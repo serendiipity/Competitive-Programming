@@ -1,37 +1,33 @@
 #include <iostream>
-using namespace std; 
+#include <bits/stdc++.h>
+using namespace std;
 
 int main() {
-	int w;
-	while (cin >> w) {
-		if (w == 0)
+	double h, u, d, f;
+	while (cin >> h >> u >> d >> f) {
+		if (h == 0)
 			break;
-		double d; cin >> d;
-		int n; cin >> n; 
-		double f; cin >> f; f /= 100;
-		double less = f * d;
-		double climbed = 0;
-		int count = 1;
-		do {
-			climbed += d; 
-			cout << "count is " << count << " and d is " << d << endl;
-			cout << "		climbed day is " << climbed << endl;
-			if (climbed > w || climbed < 0)
+		int day = 1;
+		int flag = 1;
+		double fatigue = (u * f) / 100;
+		double current = 0; 
+		while (true) {
+			current += u;
+			if (u > 0)
+				u -= fatigue;
+			if (current > h)
 				break;
-			d -= less;
-			climbed -= n;
-			cout << "		climbed night is " << climbed << endl;
-			
-			if (climbed > w || climbed < 0)
+			current -= d;
+			if (current < 0) {
+				flag = 0;
 				break;
-			count++;
-		} while (climbed > 0 && climbed < w);
-		if (climbed <= 0)
-			cout << "failure ";
+			}
+			day++;
+		}
+		if (flag)
+			cout << "success on day " << day << endl;
 		else 
-			cout << "success ";
-		cout << "on day " << count << endl;
-			
+			cout << "failure on day " << day << endl;
 	}
 	return 0;
 }
