@@ -1,20 +1,31 @@
 #include <iostream>
 #include <string>
-#include <cctype>
+#include <locale>
 using namespace std;
 
 int main() {
-	int alpha = 0, digits = 0;
-	string s; cin >> s;
+	string s; getline(cin, s);
+	locale loc;
+	int alpha = 0, digit = 0, len = 0;
 	for (int i = 0; i < (int) s.size(); i++) {
-		if (isalpha(s[i]))
+		if (s[i] == ' ') {
+			if (len == 3)
+				if (alpha == 1 && digit == 2) {
+					s[i-1] = '*';
+					s[i-2] = '*';
+					s[i-3] = '*';
+				}
+			len = 0;
+			digit = 0;
+			alpha = 0;
+		}
+		if (s[i] != ' ' && isalpha(s[i], loc))
 			alpha++;
-		else if (isdigit(s[i]))
-			digits++;
+		if (s[i] != ' ' && isdigit(s[i], loc))
+			digit++;
+		if (s[i] != ' ')
+			len++;
 	}
-	if (alpha == 1 && digits == 2)
-		for (int i = 0; i < (int)s.size(); i++)
-			s[i] = '*';
 	cout << s << endl;
 	return 0;
 }
