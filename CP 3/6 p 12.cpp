@@ -6,13 +6,13 @@ using namespace std;
 bool binary_search(vector <int> & numbers, int l, int r, int target) {
 	if (r < l)
 		return false; 
-	int m = (l+r)/2;
+	int m = (l + r) / 2;
 	if (numbers[m] == target)
 		return true;
 	else if (target > numbers[m])
-		binary_search(numbers, m+1, r, target);
+		binary_search(numbers, m + 1, r, target);
 	else if (target < numbers[m])
-		binary_search(numbers, l, m-1, target);
+		binary_search(numbers, l, m - 1, target);
 }  
 
 int main() {
@@ -23,7 +23,7 @@ int main() {
 		numbers.push_back(x);
 	}
 	sort(numbers.begin(), numbers.end());
-	if (binary_search(numbers, 0, numbers.size()-1, target))
+	if (binary_search(numbers, 0, numbers.size() - 1, target))
 		cout << "found!" << endl;
 	else 
 		cout << "not found..." << endl;
