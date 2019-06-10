@@ -1,22 +1,18 @@
-#include <vector> 
-#include <iostream> 
+#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-int main(void) {
+int main() {
 	int n; cin >> n;
-	vector <char> results;
 	while (n--) {
-		int a, b; cin >> a >> b;
-		if (a > b) {
-			results.push_back('>');
+		long long a, b; cin >> a >> b;
+		if (a > b) { 
+			cout << ">" << endl;
+		} else if (a < b) {
+			cout << "<" << endl;
+		} else {
+			cout << "=" << endl;
 		}
-		else if (a < b) {
-			results.push_back('<');
-		}
-		else
-			results.push_back('=');
 	}
-	for (auto r : results)
-		cout << r << endl;
-return 0;
+	return 0;
 }
