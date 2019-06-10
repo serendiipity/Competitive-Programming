@@ -1,33 +1,22 @@
-#include <vector>
 #include <iostream>
-#include <string>
-#include <cstring>
+#include <bits/stdc++.h>
 using namespace std;
 
-int main(void) {
-    int sum = 0;
-    vector <int> results;
-    string inp;
-    while (getline(cin, inp)) {
-        char line[(int)inp.size()];
-        strcpy(line, inp.c_str());
-        char a[2];
-        int size = 0;
-        int i = 0;
-        int j = 0;
-        while (size < (int)inp.size() - i) {
-            strcpy(a, strtok(&line[j], " "));
-            int b = a[0] - 48;
-            sum += b;
-            size++;
-            i++;
-            j+=2;
-        }
-        results.push_back(sum);
-        sum = 0;
-        size = 0;
-    }
-    for (auto r : results)
-        cout << r << endl;
-    return 0;
+int main() {
+	string line;
+	while (getline(cin, line)) {
+		char c_line[100];
+		strcpy(c_line, line.c_str());
+		int sum = 0;
+		for (int i = 0; i < strlen(c_line) + 1; ) {
+			char c_int[10]; 
+			sscanf(c_line + i, "%s", c_int);
+			i += strlen(c_int) + 1;
+			int n;
+			stringstream(c_int) >> n;
+			sum += n;
+		}
+		cout << sum << endl;
+	}
+	return 0;
 }
