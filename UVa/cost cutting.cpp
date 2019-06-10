@@ -1,25 +1,20 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-	vector <int> nums, results;
-	int cases, m; cin >> cases; 
-	m = cases;
-	while (cases--) {
-		int count = 0;
-		while (count < 3) {
-			int n; cin >> n; 
-			nums.push_back(n);
-			count++;
-		}
-		sort(nums.begin(), nums.end());
-		results.push_back(nums[1]);
-		nums.clear();
-	}
-	for (int i=0; i<m; i++) {
-		cout << "Case " << i + 1 << ": " << results[i] << endl;
+	int t; cin >> t;
+	for (int i = 1; i <= t; i++) {
+		int a, b, c; cin >> a >> b >> c;
+		int min_e = min(min(a, b), c);
+		int max_e = max(max(a, b), c);
+		cout << "Case " << i << ": ";
+		if (a != max_e && a != min_e) {
+			cout << a << endl;
+		} else if (b != min_e && b != max_e) {
+			cout << b << endl;
+		} else 
+			cout << c << endl;
 	}
 	return 0;
 }
