@@ -3,7 +3,8 @@
 using namespace std;
 typedef vector <int> vi;
 
-vi r, p;
+vi r, p, s;
+int n;
 
 int find_set(int x) {
 	if (p[x] == x)
@@ -26,27 +27,22 @@ void union_set(int x, int y) {
 		return;
 	if (r[x] >= r[y]) {
 		p[y] = x;
+		s[x] += s[y];
 		if (r[x] == r[y])
 			r[x]++;
 	} else { 
 		p[x] = y; 
+		s[y] += s[x];
 	}
+	n--;
 }
 
 int count_sets() {
-	set <int> d; 
-	for (auto a: p)
-		d.insert(a);
-	return d.size();
+	return n;
 }
 
-int set_size(int s) { 
-	int count = 0; 
-	s = find_set(s);
-	for (auto x: p)
-		if (x == s)
-			count++;
-	return count;
+int set_size(int x) { 
+	return s[find_set(x)];
 }
 
 void test() {
@@ -59,7 +55,9 @@ void test() {
 	union_set(2, 3);
 	cout << is_same_set(2, 3) << endl;
 	cout << is_same_set(0, 3) << endl;
+	cout << set_size(3) << endl;
 	union_set(0, 3);
+	cout << set_size(3) << endl;
 	cout << find_set(3) << endl;
 	cout << set_size(0) << endl;
 	cout << find_set(0) << endl;
@@ -74,9 +72,10 @@ void test() {
 }
 
 int main() {
-	int n; cin >> n; 
+	cin >> n; 
 	r.resize(n, 0); 
 	p.resize(n);
+	s.resize(n, 1);
 	
 	for (int i = 0; i < n; i++)
 		p[i] = i; 
