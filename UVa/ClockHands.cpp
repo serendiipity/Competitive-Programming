@@ -1,16 +1,17 @@
-#include <iostream>
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream> 
+#include <bits/stdc++.h> 
+using namespace std; 
 
 int main() {
-	int h, m; 
-	
-	while (scanf("%d:%d", &h, &m) == 2 && (h != 0) || (m != 0)) {
-		int h_deg = h * 30 + (m/60.) * 30;
-		int m_deg = m * 6;
-		int result = h_deg - m_deg; 
-		cout << (result > 180 ? 360 - result : result) << endl; 
+	double h, m;
+	while (scanf("%lf:%lf", &h, &m) == 2 && (h != 0 || m != 0)) {
+		double result = (h + (m / 60.)) * 30 - (m * 6);
+		if (result < 0)
+			result = abs(result);
+		if (result > 180)
+			printf("%.3f\n", 360 - result);
+		else 
+			printf("%.3f\n", result);
 	}
-		
 	return 0;
 }
