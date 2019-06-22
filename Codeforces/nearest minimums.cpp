@@ -31,10 +31,6 @@ int main(void) {
 		cout << 1 << endl;
 	else {
 		sort(values.begin(), values.end(), sort_value);
-		// cout << "sorted by value " << endl;
-		// for (auto r: values)
-		// 	cout << r->value << " ";
-		// cout << endl;
 		i = 1;
 		int count = 0;
 		while (count<values.size() && i<values.size() && values[i]->value == values[i-1]->value) {
@@ -48,11 +44,8 @@ int main(void) {
 		int min;
 		min = values.size();
 		for (int j=1; j<=count; j++) {
-			// cout << "j: " << j << " count: " << count << endl;
-			// cout << "[j] - [j-1] = " << values[j]->index << " - " << values[j-1]->index << endl;
 			if (values[j]->index - values[j-1]->index < min) {
 				min = values[j]->index - values[j-1]->index;
-				// cout << "min is " << min << endl;
 			}
 		}
 		cout << min << endl;
