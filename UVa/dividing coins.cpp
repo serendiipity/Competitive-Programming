@@ -2,30 +2,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n;
-int m[101][101 * 501];
-int coins[101];
+vector <int> coins; 
+int table[101][501 * 101];
 
-int share(int c, int d) {
-	if (c == n)
-		return d;
-	if (m[c][d] == -1) 
-		m[c][d] = min(share(c + 1, d + coins[c]), share(c + 1, abs(d - coins[c])));
-	
-	return m[c][d];
+int min_diff(int n, int x, int y) {
+	if (n < 0)
+		return abs(x - y);
+
+	if (table[n][x] == -1) {	
+		int d1 = min_diff(n - 1, x + coins[n], y); // giving coin n to the 1st person 
+		int d2 = min_diff(n - 1, x, y + coins[n]); // " to the 2nd person
+		table[n][x] = min(d1, d2);
+	}
+		
+	return table[n][x];
 }
 
 int main() {
-	int t; cin >> t;
+	
+	int t; cin >> t; 
 	while (t--) {
-		cin >> n;
+		coins.clear();
+				
+		int n; cin >> n; 
 		for (int i = 0; i < n; i++) {
-			int v; cin >> v; 
-			coins[i] = v;
+			int c; cin >> c; 
+			coins.push_back(c);
 			for (int j = 0; j < 501 * 101; j++)
-				m[i][j] = -1;
+				table[i][j] = -1;
 		}
-		cout << share(0, 0) << endl;
+		cout << min_diff(coins.size() - 1, 0, 0) << endl;
 	}
+	
 	return 0;
 }
