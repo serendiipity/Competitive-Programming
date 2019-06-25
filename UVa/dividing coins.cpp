@@ -23,13 +23,12 @@ int main() {
 	int t; cin >> t; 
 	while (t--) {
 		coins.clear();
+		memset(table, -1, sizeof table);
 				
 		int n; cin >> n; 
 		for (int i = 0; i < n; i++) {
 			int c; cin >> c; 
 			coins.push_back(c);
-			for (int j = 0; j < 501 * 101; j++)
-				table[i][j] = -1;
 		}
 		cout << min_diff(coins.size() - 1, 0, 0) << endl;
 	}
