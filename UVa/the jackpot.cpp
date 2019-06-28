@@ -2,30 +2,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
 int main() {
-	int n, i, j, sum, max;
-	int arr[10002];
-	while (scanf("%d", &n) == 1) {
-		if (n == 0)
+	int n; 
+	while (cin >> n) {
+		if (!n)
 			break;
-		for (i = 0; i < n; i++) {
-			scanf("%d", &arr[i]);
-		}
-		sum = 0;
-		max = -1;
-		for (i = 0; i < n; i++) {
-			sum += arr[i];
-			if (sum > max)
-				max = sum; 
+			
+		int m = INT_MIN, sum = 0;
+		
+		for (int i = 0; i < n; i++) {
+			int x; cin >> x; 
+			sum += x; 
+			if (sum > m)
+				m = sum; 
 			if (sum < 0)
 				sum = 0;
 		}
-		if (max > 0)
-			printf("The maximum winning streak is %d.\n", max);
+		if (m <= 0)
+			cout << "Losing streak." << endl;
 		else 
-			printf("Losing streak.\n");
+			cout << "The maximum winning streak is " << m << "." << endl;
 	}
-	// your code goes here
 	return 0;
 }
